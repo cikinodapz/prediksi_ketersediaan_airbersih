@@ -8,7 +8,7 @@ Air bersih adalah kebutuhan dasar, tapi banyak daerah menghadapi krisis karena p
 
 ## 📊 Dataset Dummy
 
-Kami membuat dataset dummy dengan 20 record menggunakan AI untuk simulasi realistis. Dataset ini punya:
+Kami membuat dataset dummy dengan menggunakan AI untuk simulasi realistis. Dataset ini punya:
 
 
 

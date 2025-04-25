@@ -18,13 +18,43 @@ Label: Status Ketersediaan Air (Aman, Sedang, Kritis).
 
 ## 🛠️ Cara Kerja Model
 
-Kami menggunakan Random Forest dari library scikit-learn di Python untuk klasifikasi.  
-Langkah-langkahnya:
+Kami menggunakan Random Forest dari library scikit-learn di Python untuk mengklasifikasikan status ketersediaan air bersih. Berikut langkah-langkah yang dilakukan:
 
-- **Buat Data Dummy:** 1000 record dengan fitur dan label.
-- **Pisah Data:** 70% untuk latih, 30% untuk uji
-- **Latih Model:** Random Forest dengan 100 pohon (`n_estimators=100`) untuk akurasi tinggi.
-- **Evaluasi:** Hitung akurasi dan buat confusion matrix untuk melihat performa.
+1. **Preprocessing Data:**
+   - Label pada kolom `Status Ketersediaan Air` diubah menjadi angka menggunakan `LabelEncoder`.
+   - Fitur (`X`) dipisahkan dari label (`y`).
+
+2. **Membagi Data:**
+   - Data dibagi menjadi 70% data latih dan 30% data uji menggunakan `train_test_split` dengan stratifikasi label.
+
+3. **Menyeimbangkan Data:**
+   - Data latih diseimbangkan menggunakan teknik SMOTE agar kelas seimbang dan model tidak bias.
+
+4. **Membangun Model:**
+   - Model Random Forest dibangun dengan parameter:
+     - `n_estimators=100`
+     - `class_weight='balanced'`
+     - `random_state=42`
+     - `n_jobs=-1` (mempercepat proses training dengan semua core)
+
+5. **Melatih Model:**
+   - Model dilatih menggunakan data latih hasil SMOTE.
+
+6. **Prediksi dan Evaluasi:**
+   - Model memprediksi data uji.
+   - Hasil prediksi dan label aktual dikembalikan ke format aslinya menggunakan `inverse_transform`.
+
+7. **Evaluasi Akurasi:**
+   - Menghitung akurasi model menggunakan `accuracy_score`.
+   - Menampilkan classification report (precision, recall, f1-score).
+
+8. **Confusion Matrix:**
+   - Menampilkan confusion matrix untuk melihat performa klasifikasi antar label.
+
+9. **Feature Importances:**
+   - Menampilkan fitur-fitur yang paling berpengaruh dalam proses klasifikasi berdasarkan nilai pentingnya dari model.
+
+
 
 ## 🎯 Hasil
 Akurasi: 98,66%! Model sangat akurat dalam prediksi status air bersih.
